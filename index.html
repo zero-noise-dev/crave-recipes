@@ -360,6 +360,35 @@
     .api-step p { font-size: 0.84rem; color: var(--text-dim); margin: 0; line-height: 1.6; }
     .api-step strong { color: var(--text); font-weight: 600; }
 
+    /* ── COOKING FEATURES ── */
+    .cooking-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    @media (max-width: 720px) { .cooking-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .cooking-grid { grid-template-columns: 1fr; } }
+    .cooking-card {
+      background: var(--card);
+      padding: 2rem 1.5rem;
+      transition: background 0.2s;
+    }
+    .cooking-card:hover { background: var(--card2); }
+    .cooking-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .cooking-icon svg { width: 18px; height: 18px; color: var(--accent); stroke-width: 1.6; }
+    .cooking-card h3 { font-family: var(--serif); font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text); }
+    .cooking-card p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.55; }
+
     /* ── FAQ ── */
     .faq-list { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
     .faq-item { border-bottom: 1px solid var(--border); }
@@ -653,6 +682,47 @@
         <div class="ic-icon"><i data-lucide="clipboard-paste"></i></div>
         <h4>Word Docs &amp; Paste</h4>
         <p>Import DOCX files or paste text directly — Crave handles the formatting either way.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- COOKING FEATURES -->
+  <section class="section fade-in" id="cooking">
+    <div class="section-label">Built for Cooking</div>
+    <h2>Everything you need<br><em>at the stove.</em></h2>
+    <p class="lead">Thoughtful features that make actually cooking from your phone a pleasure.</p>
+    <div class="cooking-grid">
+      <div class="cooking-card">
+        <div class="cooking-icon"><i data-lucide="users"></i></div>
+        <h3>Serving Scaler</h3>
+        <p>Tap to scale any recipe up or down. Ingredients recalculate instantly, shown as clean fractions — not awkward decimals.</p>
+      </div>
+      <div class="cooking-card">
+        <div class="cooking-icon"><i data-lucide="check-square"></i></div>
+        <h3>Cooking Mode</h3>
+        <p>Tap each step to check it off as you go. Keep your place in a recipe without having to scroll back and forth.</p>
+      </div>
+      <div class="cooking-card">
+        <div class="cooking-icon"><i data-lucide="ruler"></i></div>
+        <h3>Measurement Conversion</h3>
+        <p>Switch between metric, US cups, imperial, and weight. Set a global default or override per recipe — whichever suits you.</p>
+      </div>
+      <div class="cooking-card">
+        <div class="cooking-icon"><i data-lucide="search"></i></div>
+        <h3>Smart Search &amp; Filters</h3>
+        <p>Search by name, filter by tag, cookbook, or favourites. Works across large collections without slowing down.</p>
+      </div>
+      <div class="cooking-card">
+        <div class="cooking-icon"><i data-lucide="file-output"></i></div>
+        <h3>PDF Export &amp; Share</h3>
+        <p>Export any recipe as a formatted PDF — complete with photo thumbnail. Share as a file, text, or screenshot.</p>
+      </div>
+      <div class="cooking-card">
+        <div class="cooking-icon"><i data-lucide="thermometer"></i></div>
+        <h3>Temperature Converter</h3>
+        <p>Oven temperatures auto-extracted from your recipe steps. Tap to switch between °C and °F without leaving the recipe.</p>
       </div>
     </div>
   </section>
