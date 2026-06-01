@@ -103,6 +103,10 @@ This is the authoritative feature list for the Crave Recipes Android app. Use it
 ### Pending
 
 - [ ] **Screenshots** — replace 4 phone-frame placeholders with real app screenshots. Swap `.screenshot-placeholder` divs for `<img>` tags inside each `.screenshot-frame`.
+  - [ ] Frame 1 — **Home**: recipe grid with photo cards and stats bar visible
+  - [ ] Frame 2 — **Recipe Detail**: full recipe open showing header photo, serving scaler, and ingredients
+  - [ ] Frame 3 — **Cooking Mode**: recipe mid-cook with some steps checked off
+  - [ ] Frame 4 — **Import**: URL import screen or import in progress
 - [ ] **Deploy** — publish `index.html` to a static host (GitHub Pages, Netlify, etc.)
 - [ ] **Record live URL** — once deployed, add the URL to `C:\Projects\recipe-pwa` under Play Store Publishing.
 
