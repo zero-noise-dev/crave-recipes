@@ -185,73 +185,62 @@
     }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
 
-    /* ── SCREENSHOTS ── */
-    .screenshots { padding: 2rem 2rem 6rem; overflow: hidden; }
-    .screenshots-inner {
-      display: flex; gap: 1.5rem;
-      justify-content: center; flex-wrap: wrap;
-      align-items: flex-end;
-    }
-    .screenshot-frame {
-      width: 175px;
-      border-radius: 26px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--card);
-      flex-shrink: 0;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    /* ── SCREENSHOTS CAROUSEL ── */
+    .screenshots { padding: 2rem 1rem 5rem; }
+
+    .carousel {
+      max-width: 480px;
+      margin: 0 auto;
       position: relative;
     }
-    .screenshot-frame::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%; transform: translateX(-50%);
-      width: 60px; height: 3px;
-      background: var(--border-mid);
-      border-radius: 0 0 4px 4px;
-      z-index: 2;
-    }
-    .screenshot-frame:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.5); }
-    .screenshot-frame:nth-child(1) { transform: translateY(-12px); }
-    .screenshot-frame:nth-child(1):hover { transform: translateY(-20px); }
-    .screenshot-frame:nth-child(2) { transform: translateY(8px); }
-    .screenshot-frame:nth-child(2):hover { transform: translateY(0px); }
-    .screenshot-frame:nth-child(3) { transform: translateY(-4px); }
-    .screenshot-frame:nth-child(3):hover { transform: translateY(-12px); }
-    .screenshot-frame:nth-child(4) { transform: translateY(14px); }
-    .screenshot-frame:nth-child(4):hover { transform: translateY(6px); }
-    .screenshot-placeholder {
-      width: 100%; aspect-ratio: 9/19.5;
-      background: var(--bg2);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 0.6rem;
-      color: var(--text-muted);
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 1rem;
-    }
-    .screenshot-placeholder .icon svg { width: 24px; height: 24px; color: var(--text-muted); }
-
-    .screenshots-note {
-      text-align: center;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      margin-top: 2rem;
-      font-style: italic;
-    }
-
-    .duo-split {
-      max-width: 520px;
-      margin: 0 auto 3rem;
-      border-radius: 20px;
+    .carousel-track {
       overflow: hidden;
+      border-radius: 20px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.5);
     }
-    .duo-split img { width: 100%; display: block; }
+    .carousel-slides {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .carousel-slide {
+      min-width: 100%;
+    }
+    .carousel-slide img {
+      width: 100%; display: block;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(26,22,18,0.75);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(6px);
+      transition: background 0.2s, border-color 0.2s;
+      z-index: 2;
+    }
+    .carousel-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .carousel-btn.prev { left: -20px; }
+    .carousel-btn.next { right: -20px; }
+    .carousel-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .carousel-dots {
+      display: flex; justify-content: center; gap: 8px;
+      margin-top: 1.5rem;
+    }
+    .carousel-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--border-mid);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      border: none; padding: 0;
+    }
+    .carousel-dot.active { background: var(--accent); transform: scale(1.3); }
 
     /* ── SECTION BASE ── */
     .section { padding: 6rem 2rem; max-width: 1060px; margin: 0 auto; }
@@ -594,22 +583,33 @@
 
   <!-- SCREENSHOTS -->
   <div class="screenshots fade-in">
-    <div class="duo-split">
-      <img src="duo-split-home page.png" alt="Crave Recipes home screen in light and dark mode" />
-    </div>
-    <div class="screenshots-inner">
-      <div class="screenshot-frame">
-        <img src="flat lay-home page.png" alt="Crave Recipes home screen showing recipe grid" style="width:100%;display:block;" />
+    <div class="carousel" id="screenshotCarousel">
+      <div class="carousel-track">
+        <div class="carousel-slides">
+          <div class="carousel-slide">
+            <img src="duo-split-home page.png" alt="Crave Recipes home screen in light and dark mode" />
+          </div>
+          <div class="carousel-slide">
+            <img src="flat lay-home page.png" alt="Crave Recipes home screen showing recipe grid" />
+          </div>
+          <div class="carousel-slide">
+            <img src="mix-recipe-ingredients.png" alt="Crave Recipes ingredients list" />
+          </div>
+          <div class="carousel-slide">
+            <img src="mix-recipe-method.png" alt="Crave Recipes recipe method steps" />
+          </div>
+          <div class="carousel-slide">
+            <img src="mix_recipe-settings.png" alt="Crave Recipes settings screen" />
+          </div>
+        </div>
       </div>
-      <div class="screenshot-frame">
-        <img src="mix-recipe-ingredients.png" alt="Crave Recipes ingredients list" style="width:100%;display:block;" />
-      </div>
-      <div class="screenshot-frame">
-        <img src="mix-recipe-method.png" alt="Crave Recipes recipe method steps" style="width:100%;display:block;" />
-      </div>
-      <div class="screenshot-frame">
-        <img src="mix_recipe-settings.png" alt="Crave Recipes settings screen" style="width:100%;display:block;" />
-      </div>
+      <button class="carousel-btn prev" onclick="carouselMove(-1)" aria-label="Previous">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn next" onclick="carouselMove(1)" aria-label="Next">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="carousel-dots" id="carouselDots"></div>
     </div>
   </div>
 
@@ -902,6 +902,42 @@
     document.getElementById('mobileNav').classList.remove('open');
     document.body.style.overflow = '';
   }
+
+  (function() {
+    const slides = document.querySelectorAll('#screenshotCarousel .carousel-slide');
+    const track = document.querySelector('#screenshotCarousel .carousel-slides');
+    const dotsEl = document.getElementById('carouselDots');
+    let current = 0;
+
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      d.onclick = () => goTo(i);
+      dotsEl.appendChild(d);
+    });
+
+    function goTo(n) {
+      current = (n + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) =>
+        d.classList.toggle('active', i === current));
+    }
+
+    window.carouselMove = (dir) => goTo(current + dir);
+
+    document.getElementById('screenshotCarousel').addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    let startX = 0;
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+    });
+  })();
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
