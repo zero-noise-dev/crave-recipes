@@ -98,6 +98,22 @@ This is the authoritative feature list for the Crave Recipes Android app. Use it
 | API key management | Show/hide/save/clear |
 | Backup & Restore | JSON export v4; includes recipes, photos, attributions, tags |
 
+## Outstanding Tasks
+
+These are known to-dos not yet done as of the first session (1 Jun 2026):
+
+- **Real screenshots** — replace the 4 phone-frame placeholders in `index.html` with actual app screenshots. Frames are `.screenshot-frame` divs containing `.screenshot-placeholder` — swap the placeholder div for an `<img>` tag.
+- **Deployment** — site has not been deployed yet. Once live, record the URL in `C:\Projects\recipe-pwa` under Play Store Publishing.
+
+## Privacy Policy Notes
+
+Decisions made in session 1 worth preserving:
+
+- App stores (especially Apple) want data categories listed even when the answer is none — the "table below reflects this" line was added for that reason.
+- API key warning ("treat like a password… remove before sharing backups") was added because the JSON export v4 backup includes the API key.
+- Use **"Crave Recipes"** consistently throughout the policy — never just "Crave".
+- Date format: `D Month YYYY` (e.g. `1 June 2026`) so it's unambiguous if updated later in the same month.
+
 ## Key Constants
 
 | Item | Value |
