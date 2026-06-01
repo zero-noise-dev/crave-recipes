@@ -98,12 +98,20 @@ This is the authoritative feature list for the Crave Recipes Android app. Use it
 | API key management | Show/hide/save/clear |
 | Backup & Restore | JSON export v4; includes recipes, photos, attributions, tags |
 
-## Outstanding Tasks
+## Tasks
 
-These are known to-dos not yet done as of the first session (1 Jun 2026):
+### Pending
 
-- **Real screenshots** — replace the 4 phone-frame placeholders in `index.html` with actual app screenshots. Frames are `.screenshot-frame` divs containing `.screenshot-placeholder` — swap the placeholder div for an `<img>` tag.
-- **Deployment** — site has not been deployed yet. Once live, record the URL in `C:\Projects\recipe-pwa` under Play Store Publishing.
+- [ ] **Screenshots** — replace 4 phone-frame placeholders with real app screenshots. Swap `.screenshot-placeholder` divs for `<img>` tags inside each `.screenshot-frame`.
+- [ ] **Deploy** — publish `index.html` to a static host (GitHub Pages, Netlify, etc.)
+- [ ] **Record live URL** — once deployed, add the URL to `C:\Projects\recipe-pwa` under Play Store Publishing.
+
+### Done
+
+- [x] Initial landing page — hero, features, import, cooking features, FAQ, privacy policy
+- [x] Privacy policy reviewed and finalised (1 Jun 2026)
+- [x] Git initialised
+- [x] 'Built for Cooking' section added (1 Jun 2026)
 
 ## Privacy Policy Notes
 

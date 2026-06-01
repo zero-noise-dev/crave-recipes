@@ -4,7 +4,7 @@
 
 | Command | Description |
 |---|---|
-| `DISPLAY` | Show full contents of TODO.md (pending + done) |
+| `DISPLAY` | Show the Tasks section of CLAUDE.md (pending + done) |
 | `DISPLAY CLAUDE` | Show full contents of CLAUDE.md |
 
 ---
@@ -26,12 +26,12 @@
 
 ---
 
-## Managing TODO.md
+## Managing Tasks
 
 | Command | Description |
 |---|---|
-| `ADD TASK [description]` | Add a new pending task to TODO.md |
-| `DONE [description]` | Mark a task as complete and move it to the Done section |
+| `ADD TASK [description]` | Add a new pending task to the Tasks section of CLAUDE.md |
+| `DONE [description]` | Mark a task as complete and move it to Done in CLAUDE.md |
 
 ---
 
@@ -67,6 +67,5 @@ All files are read and written directly from disk — no uploads or downloads re
 | File | Path |
 |---|---|
 | `CLAUDE.md` | `C:\Projects\crave-website\CLAUDE.md` |
-| `TODO.md` | `C:\Projects\crave-website\TODO.md` |
 | `claude-quickref.md` | `C:\Projects\crave-website\claude\claude-quickref.md` |
 | `index.html` | `C:\Projects\crave-website\index.html` |
