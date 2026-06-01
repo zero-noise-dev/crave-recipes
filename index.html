@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crave Recipes — Your recipes, your device</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:        #f0954a;
+      --accent-dim:    rgba(240,149,74,0.15);
+      --accent-glow:   rgba(240,149,74,0.08);
+      --bg:            #1a1612;
+      --bg2:           #201c17;
+      --card:          #241f1a;
+      --card2:         #2c2620;
+      --border:        rgba(255,255,255,0.08);
+      --border-mid:    rgba(255,255,255,0.12);
+      --text:          #f0ebe4;
+      --text-dim:      #a89f94;
+      --text-muted:    #6b6358;
+      --serif: 'Lora', Georgia, serif;
+      --sans:  'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── ICONS ── */
+    .icon { display: flex; align-items: center; justify-content: center; }
+    .icon svg { width: 20px; height: 20px; stroke-width: 1.6; }
+    .icon-sm svg { width: 16px; height: 16px; stroke-width: 1.75; }
+    .icon-lg svg { width: 26px; height: 26px; stroke-width: 1.4; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.1rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(26,22,18,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      display: flex; align-items: center; gap: 0.45rem;
+    }
+    .nav-logo-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav ul a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 9rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 30%, rgba(240,149,74,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 50% 60%, rgba(240,149,74,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent-dim);
+      border: 1px solid rgba(240,149,74,0.25);
+      border-radius: 100px;
+      padding: 0.3rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.5s ease both;
+    }
+    .hero-badge-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 9vw, 7rem);
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.75rem;
+      position: relative; z-index: 1;
+      color: var(--text);
+      animation: fadeUp 0.5s 0.08s ease both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: var(--text-dim);
+      max-width: 440px;
+      margin: 0 auto 3rem;
+      font-weight: 300;
+      position: relative; z-index: 1;
+      line-height: 1.7;
+      animation: fadeUp 0.5s 0.16s ease both;
+    }
+
+    .hero-cta {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      justify-content: center;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.5s 0.24s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      background: var(--accent);
+      color: #1a1612;
+      padding: 0.9rem 2rem;
+      border-radius: 6px;
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(240,149,74,0.25);
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover { background: #f5a866; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(240,149,74,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid var(--border-mid);
+      color: var(--text-dim);
+      padding: 0.9rem 1.8rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+
+    /* ── SCREENSHOTS ── */
+    .screenshots { padding: 2rem 2rem 6rem; overflow: hidden; }
+    .screenshots-inner {
+      display: flex; gap: 1.5rem;
+      justify-content: center; flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .screenshot-frame {
+      width: 175px;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card);
+      flex-shrink: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      position: relative;
+    }
+    .screenshot-frame::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 3px;
+      background: var(--border-mid);
+      border-radius: 0 0 4px 4px;
+      z-index: 2;
+    }
+    .screenshot-frame:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.5); }
+    .screenshot-frame:nth-child(1) { transform: translateY(-12px); }
+    .screenshot-frame:nth-child(1):hover { transform: translateY(-20px); }
+    .screenshot-frame:nth-child(2) { transform: translateY(8px); }
+    .screenshot-frame:nth-child(2):hover { transform: translateY(0px); }
+    .screenshot-frame:nth-child(3) { transform: translateY(-4px); }
+    .screenshot-frame:nth-child(3):hover { transform: translateY(-12px); }
+    .screenshot-frame:nth-child(4) { transform: translateY(14px); }
+    .screenshot-frame:nth-child(4):hover { transform: translateY(6px); }
+    .screenshot-placeholder {
+      width: 100%; aspect-ratio: 9/19.5;
+      background: var(--bg2);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.6rem;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1rem;
+    }
+    .screenshot-placeholder .icon svg { width: 24px; height: 24px; color: var(--text-muted); }
+
+    .screenshots-note {
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+      font-style: italic;
+    }
+
+    /* ── SECTION BASE ── */
+    .section { padding: 6rem 2rem; max-width: 1060px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      font-weight: 600;
+      line-height: 1.18;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .section h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+    .section > .lead { color: var(--text-dim); max-width: 480px; margin-bottom: 3rem; font-size: 0.95rem; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); max-width: 1060px; margin: 0 auto; }
+
+    /* ── PILLARS ── */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .pillar {
+      background: var(--card);
+      padding: 2rem 1.5rem;
+      transition: background 0.2s;
+    }
+    .pillar:hover { background: var(--card2); }
+    .pillar-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .pillar-icon svg { width: 18px; height: 18px; color: var(--accent); stroke-width: 1.6; }
+    .pillar h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .pillar p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.55; }
+
+    /* ── IMPORT CARDS ── */
+    .import-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    @media (max-width: 580px) { .import-grid { grid-template-columns: 1fr; } }
+    .import-card {
+      background: var(--card);
+      padding: 1.75rem;
+      transition: background 0.2s;
+    }
+    .import-card:hover { background: var(--card2); }
+    .import-card .ic-icon {
+      width: 38px; height: 38px;
+      border-radius: 9px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .import-card .ic-icon svg { width: 18px; height: 18px; color: var(--accent); stroke-width: 1.6; }
+    .import-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text); }
+    .import-card p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.55; }
+
+    /* ── API SECTION ── */
+    .api-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    @media (max-width: 680px) { .api-box { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; } }
+    .api-box h2 {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .api-box p { font-size: 0.86rem; color: var(--text-dim); margin-bottom: 0.9rem; line-height: 1.7; }
+    .api-box a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .api-box a:hover { text-decoration: underline; }
+    .api-steps { display: flex; flex-direction: column; gap: 1.2rem; }
+    .api-step { display: flex; gap: 1rem; align-items: flex-start; }
+    .api-step-num {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+    .api-step p { font-size: 0.84rem; color: var(--text-dim); margin: 0; line-height: 1.6; }
+    .api-step strong { color: var(--text); font-weight: 600; }
+
+    /* ── FAQ ── */
+    .faq-list { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%;
+      background: var(--card);
+      border: none;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 1.3rem 1.6rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      transition: background 0.2s;
+    }
+    .faq-q:hover { background: var(--card2); }
+    .faq-item.open .faq-q { background: var(--card2); color: var(--accent); }
+    .faq-q .chevron { color: var(--text-muted); flex-shrink: 0; transition: transform 0.25s; }
+    .faq-q .chevron svg { width: 15px; height: 15px; stroke-width: 2.5; }
+    .faq-item.open .faq-q .chevron { transform: rotate(180deg); color: var(--accent); }
+    .faq-a {
+      background: var(--bg2);
+      padding: 0 1.6rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 320px; padding: 0 1.6rem 1.3rem; }
+    .faq-a p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; }
+    .faq-a a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .faq-a a:hover { text-decoration: underline; }
+
+    /* ── BOTTOM CTA ── */
+    .bottom-cta {
+      text-align: center;
+      padding: 5rem 2rem 8rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .bottom-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(240,149,74,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .bottom-cta p {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+      line-height: 1.25;
+      margin-bottom: 2.5rem;
+      color: var(--text);
+      position: relative; z-index: 1;
+    }
+    .bottom-cta p em { font-style: italic; font-weight: 400; color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      align-items: center; justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      background: var(--bg2);
+    }
+    footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; gap: 2rem; }
+
+    /* ── PRIVACY ── */
+    #privacy { display: none; padding: 8rem 2rem 5rem; max-width: 680px; margin: 0 auto; }
+    #privacy.active { display: block; }
+    #privacy h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; margin-bottom: 0.4rem; color: var(--text); }
+    #privacy .last-updated { font-size: 0.76rem; color: var(--text-muted); margin-bottom: 3rem; }
+    #privacy h2 { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; margin: 2.5rem 0 0.7rem; color: var(--text); }
+    #privacy p, #privacy li { font-size: 0.87rem; color: var(--text-dim); line-height: 1.8; margin-bottom: 0.5rem; }
+    #privacy ul { padding-left: 1.3rem; }
+    #privacy strong { color: var(--text); font-weight: 600; }
+    #privacy a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    #privacy a:hover { text-decoration: underline; }
+
+    #main.hidden { display: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      .pillars { grid-template-columns: 1fr 1fr; }
+      .section { padding: 4rem 1.5rem; }
+      footer { padding: 1.5rem; }
+      .bottom-cta { padding: 4rem 1.5rem 6rem; }
+    }
+
+    /* ── MOBILE MENU ── */
+    .nav-menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      width: 36px; height: 36px;
+      border-radius: 6px;
+      cursor: pointer;
+      align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-menu-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-menu-btn svg { width: 16px; height: 16px; stroke-width: 2; }
+    @media (max-width: 640px) { .nav-menu-btn { display: flex; } }
+
+    .mobile-nav {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(26,22,18,0.97);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--accent); }
+    .mobile-nav-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: 1px solid var(--border);
+      color: var(--text-dim); width: 36px; height: 36px;
+      border-radius: 6px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .mobile-nav-close:hover { border-color: var(--accent); color: var(--accent); }
+    .mobile-nav-close svg { width: 16px; height: 16px; stroke-width: 2; }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()"><i data-lucide="x"></i></button>
+  <a href="#features" onclick="closeMobileNav()">Features</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="#" onclick="closeMobileNav(); showPrivacy(); return false;">Privacy</a>
+  <a href="https://play.google.com/store/apps/details?id=nz.co.crave.recipes" target="_blank" style="color:var(--accent);font-size:1rem;font-family:var(--sans);font-weight:700;border:1.5px solid var(--accent);padding:0.8rem 2rem;border-radius:6px;" onclick="closeMobileNav()">Get the App</a>
+</div>
+
+<nav>
+  <a href="#" class="nav-logo" onclick="showMain(); return false;">
+    <span class="nav-logo-dot"></span>
+    Crave Recipes
+  </a>
+  <ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#" onclick="showPrivacy(); return false;">Privacy</a></li>
+  </ul>
+  <button class="nav-menu-btn" onclick="openMobileNav()"><i data-lucide="menu"></i></button>
+</nav>
+
+<div id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Now on Android
+    </div>
+    <h1>Your recipes.<br><em>Your device.</em></h1>
+    <p class="hero-sub">A recipe app that stays out of your way. No account, no ads, no tracking — just your cookbooks, stored privately on your phone.</p>
+    <div class="hero-cta">
+      <a href="https://play.google.com/store/apps/details?id=nz.co.crave.recipes" class="btn-primary" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 1-1.09-1.79V2.03A2 2 0 0 1 3.18.27l11.61 11.73L3.18 23.76zm14.36-8.59L4.93 21.96l9.26-9.35 3.35 2.56zM21 13.68a2 2 0 0 1 0 3.46l-2.14 1.23-3.68-2.81 3.68-3.72L21 13.68zM4.93 2.04l12.61 6.79-3.35 3.39-9.26-10.18z"/></svg>
+        Get on Google Play
+      </a>
+      <a href="#features" class="btn-ghost">
+        See features
+        <span class="icon icon-sm"><i data-lucide="arrow-down"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <div class="screenshots fade-in">
+    <div class="screenshots-inner">
+      <div class="screenshot-frame">
+        <div class="screenshot-placeholder">
+          <span class="icon"><i data-lucide="layout-grid"></i></span>
+          <span>Home</span>
+        </div>
+      </div>
+      <div class="screenshot-frame">
+        <div class="screenshot-placeholder">
+          <span class="icon"><i data-lucide="book-open"></i></span>
+          <span>Recipe</span>
+        </div>
+      </div>
+      <div class="screenshot-frame">
+        <div class="screenshot-placeholder">
+          <span class="icon"><i data-lucide="search"></i></span>
+          <span>Browse</span>
+        </div>
+      </div>
+      <div class="screenshot-frame">
+        <div class="screenshot-placeholder">
+          <span class="icon"><i data-lucide="download"></i></span>
+          <span>Import</span>
+        </div>
+      </div>
+    </div>
+    <p class="screenshots-note">Replace placeholders with real app screenshots</p>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- FEATURES -->
+  <section class="section fade-in" id="features">
+    <div class="section-label">Why Crave</div>
+    <h2>Built around <em>privacy</em><br>and simplicity.</h2>
+    <p class="lead">No accounts. No cloud. No nonsense. Everything stays on your device, forever.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon"><i data-lucide="badge-cent"></i></div>
+        <h3>100% Free</h3>
+        <p>No subscription, no premium tier, no hidden costs. Free forever.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><i data-lucide="ban"></i></div>
+        <h3>Zero Ads</h3>
+        <p>No banners, no pop-ups, no sponsored recipes. Ever.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><i data-lucide="eye-off"></i></div>
+        <h3>Zero Tracking</h3>
+        <p>No analytics, no usage data, no telemetry of any kind.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><i data-lucide="user-x"></i></div>
+        <h3>Zero Sign-Up</h3>
+        <p>Open the app and start cooking. No email, no password, no account.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><i data-lucide="smartphone"></i></div>
+        <h3>Local Storage</h3>
+        <p>Your recipes live only on your device. Nothing is sent to a server.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><i data-lucide="hard-drive-download"></i></div>
+        <h3>Backup &amp; Restore</h3>
+        <p>Export a local backup any time. Your data, your control, your files.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- IMPORT -->
+  <section class="section fade-in">
+    <div class="section-label">Import</div>
+    <h2>Get recipes in<br><em>any format.</em></h2>
+    <p class="lead">From the web, your files, or a photo of a cookbook — Crave handles it all.</p>
+    <div class="import-grid">
+      <div class="import-card">
+        <div class="ic-icon"><i data-lucide="globe"></i></div>
+        <h4>URL Import</h4>
+        <p>Paste any recipe URL and Crave extracts the recipe automatically, stripping away all the blog noise.</p>
+      </div>
+      <div class="import-card">
+        <div class="ic-icon"><i data-lucide="camera"></i></div>
+        <h4>Photo &amp; Camera</h4>
+        <p>Photograph a recipe from a book or handwritten card. AI reads and structures it for you.</p>
+      </div>
+      <div class="import-card">
+        <div class="ic-icon"><i data-lucide="file-text"></i></div>
+        <h4>PDF Import</h4>
+        <p>Import up to 40 pages at once. Multi-recipe PDFs are detected and split automatically.</p>
+      </div>
+      <div class="import-card">
+        <div class="ic-icon"><i data-lucide="clipboard-paste"></i></div>
+        <h4>Word Docs &amp; Paste</h4>
+        <p>Import DOCX files or paste text directly — Crave handles the formatting either way.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- API KEY -->
+  <section class="section fade-in">
+    <div class="api-box">
+      <div>
+        <div class="section-label">One Setup Step</div>
+        <h2>You'll need a Claude API key.</h2>
+        <p>Crave uses Claude AI (by Anthropic) to intelligently read and parse recipes from photos, PDFs, and web pages. To use these features, you'll need a free Anthropic account and an API key.</p>
+        <p>The key is stored only on your device and costs fractions of a cent per import — most users spend less than $1/month.</p>
+        <a href="https://console.anthropic.com" target="_blank">Get your free API key →</a>
+      </div>
+      <div class="api-steps">
+        <div class="api-step">
+          <div class="api-step-num">1</div>
+          <p>Go to <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> and create a free account.</p>
+        </div>
+        <div class="api-step">
+          <div class="api-step-num">2</div>
+          <p>Navigate to <strong>API Keys</strong> and generate a new key.</p>
+        </div>
+        <div class="api-step">
+          <div class="api-step-num">3</div>
+          <p>In Crave, go to <strong>Settings → API Key</strong> and paste it in.</p>
+        </div>
+        <div class="api-step">
+          <div class="api-step-num">4</div>
+          <p>Done. Your key never leaves your device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- FAQ -->
+  <section class="section fade-in" id="faq">
+    <div class="section-label">FAQ</div>
+    <h2>Common<br><em>questions.</em></h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Surely there's some catch?
+          <span class="chevron"><i data-lucide="chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>No catch. Crave is genuinely 100% free with no ads, no tracking, and no account required. There's no premium version and no plans to add one. The only optional cost is the Claude API key for importing recipes, which runs fractions of a cent per use.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need a Claude API key?
+          <span class="chevron"><i data-lucide="chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>You don't — but if you want to intelligently parse recipes from photos, PDFs, and web pages, you'll need one. You can still add recipes manually without a key. The key is free to obtain from <a href="https://console.anthropic.com" target="_blank">Anthropic's website</a> and is stored only on your device.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is there an iPhone / iOS version?
+          <span class="chevron"><i data-lucide="chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>Not currently. Crave is Android-only for now.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How much does the API key cost to use?
+          <span class="chevron"><i data-lucide="chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>Crave uses Claude Haiku, Anthropic's most affordable model. Each recipe import costs a fraction of a cent. Most users spend less than $1 per month. Anthropic also offers free credits when you first sign up.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Where are my recipes stored?
+          <span class="chevron"><i data-lucide="chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>Entirely on your device using local storage. No account, no cloud sync, no server. Back up your recipes manually from the Settings screen at any time.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What happens if I uninstall the app?
+          <span class="chevron"><i data-lucide="chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>Your recipes will be removed with the app. Export a backup from Settings before uninstalling — you can restore from the backup file when you reinstall.</p></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <div class="bottom-cta fade-in">
+    <p>Ready to own your<br><em>recipe collection?</em></p>
+    <a href="https://play.google.com/store/apps/details?id=nz.co.crave.recipes" class="btn-primary" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 1-1.09-1.79V2.03A2 2 0 0 1 3.18.27l11.61 11.73L3.18 23.76zm14.36-8.59L4.93 21.96l9.26-9.35 3.35 2.56zM21 13.68a2 2 0 0 1 0 3.46l-2.14 1.23-3.68-2.81 3.68-3.72L21 13.68zM4.93 2.04l12.61 6.79-3.35 3.39-9.26-10.18z"/></svg>
+      Download Free on Google Play
+    </a>
+  </div>
+
+</div><!-- /#main -->
+
+<!-- PRIVACY -->
+<div id="privacy">
+  <h1>Privacy Policy</h1>
+  <p class="last-updated">Last updated: 1 June 2026</p>
+  <p>Crave Recipes is designed from the ground up to respect your privacy. This policy explains what data the app handles and how.</p>
+  <h2>Data We Collect</h2>
+  <p><strong>Nothing.</strong> Crave Recipes does not collect, transmit, or store any personal data on any server. There are no analytics, no crash reporting, no usage tracking, and no advertising identifiers.</p>
+  <p>We do not collect any data. The table below reflects this — all categories are empty by design.</p>
+  <h2>Data Stored on Your Device</h2>
+  <p>All app data is stored exclusively in your device's local storage. This includes:</p>
+  <ul>
+    <li>Recipe content (title, ingredients, steps, notes)</li>
+    <li>Recipe photos you add</li>
+    <li>Tags and cookbook attributions</li>
+    <li>Your Claude API key (used only to make API calls from your device)</li>
+    <li>App preferences and settings</li>
+  </ul>
+  <p>This data never leaves your device except when you explicitly export a backup file.</p>
+  <h2>Claude API Key</h2>
+  <p>When you use an import feature, your device sends recipe content directly to Anthropic's API using your personal API key. This request is made from your device — not through any Crave Recipes server. Please review <a href="https://www.anthropic.com/privacy" target="_blank">Anthropic's Privacy Policy</a> for details on how they handle API requests.</p>
+  <p>Treat your API key like a password. If you share a backup file with others, be aware it will contain your API key — remove it from Settings first if you do not want to share it.</p>
+  <h2>No Account Required</h2>
+  <p>Crave Recipes does not require an account, email address, or any form of registration.</p>
+  <h2>Third-Party Services</h2>
+  <p>The only third-party service Crave Recipes communicates with is the Anthropic Claude API, and only when you actively use an import feature. No advertising networks, analytics services, or other third-party SDKs are used.</p>
+  <h2>Data Deletion</h2>
+  <p>All your data can be deleted at any time by clearing the app's data or uninstalling it. There is no server-side data to delete.</p>
+  <h2>Contact</h2>
+  <p>Questions about this policy? Email <a href="mailto:claude@crave.co.nz">claude@crave.co.nz</a></p>
+  <div style="margin-top:3rem;">
+    <a href="#" onclick="showMain(); return false;" class="btn-ghost">← Back to home</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Crave Recipes · New Zealand</span>
+  <div class="footer-links">
+    <a href="#" onclick="showPrivacy(); return false;">Privacy Policy</a>
+    <a href="https://play.google.com/store/apps/details?id=nz.co.crave.recipes" target="_blank">Google Play</a>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  function showPrivacy() {
+    document.getElementById('main').classList.add('hidden');
+    document.getElementById('privacy').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showMain() {
+    document.getElementById('main').classList.remove('hidden');
+    document.getElementById('privacy').classList.remove('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function openMobileNav() {
+    document.getElementById('mobileNav').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileNav() {
+    document.getElementById('mobileNav').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
