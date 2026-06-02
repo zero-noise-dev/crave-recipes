@@ -288,32 +288,48 @@
     .import-card p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.55; }
 
     /* ── API SECTION ── */
-    .api-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 3rem;
+    .api-intro { max-width: 560px; margin-bottom: 2.5rem; }
+    .api-intro p { font-size: 0.92rem; color: var(--text-dim); line-height: 1.7; }
+    .api-providers {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
     }
-    @media (max-width: 680px) { .api-box { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; } }
-    .api-box h2 {
-      font-family: var(--serif);
-      font-size: 1.8rem;
+    @media (max-width: 680px) { .api-providers { grid-template-columns: 1fr; } }
+    .api-provider {
+      background: var(--card);
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background 0.2s;
+    }
+    .api-provider:hover { background: var(--card2); }
+    .api-provider-label {
+      font-size: 0.67rem;
       font-weight: 600;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      color: var(--text);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
     }
-    .api-box p { font-size: 0.86rem; color: var(--text-dim); margin-bottom: 0.9rem; line-height: 1.7; }
-    .api-box a { color: var(--accent); text-decoration: none; font-weight: 500; }
-    .api-box a:hover { text-decoration: underline; }
-    .api-steps { display: flex; flex-direction: column; gap: 1.2rem; }
+    .api-provider h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .api-provider > p { font-size: 0.84rem; color: var(--text-dim); line-height: 1.7; margin: 0; }
+    .api-provider a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .api-provider a:hover { text-decoration: underline; }
+    .api-steps { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
     .api-step { display: flex; gap: 1rem; align-items: flex-start; }
     .api-step-num {
-      width: 26px; height: 26px;
+      width: 24px; height: 24px;
       border-radius: 50%;
       border: 1.5px solid var(--accent);
       color: var(--accent);
@@ -321,9 +337,9 @@
       font-weight: 600;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      margin-top: 0.05rem;
+      margin-top: 0.1rem;
     }
-    .api-step p { font-size: 0.84rem; color: var(--text-dim); margin: 0; line-height: 1.6; }
+    .api-step p { font-size: 0.82rem; color: var(--text-dim); margin: 0; line-height: 1.6; }
     .api-step strong { color: var(--text); font-weight: 600; }
 
     /* ── COOKING FEATURES ── */
@@ -670,32 +686,61 @@
 
   <!-- API KEY -->
   <section class="section fade-in">
-    <div class="api-box">
-      <div>
-        <div class="section-label">Optional Enhancement</div>
-        <h2>Unlock the full power<br>with a <em>Claude API key.</em></h2>
-        <p>Crave works great out of the box — browse, organise, and cook from your recipes with no setup required. But add a Claude API key and you unlock the app's most powerful features: AI-powered import from photos, PDFs, and web pages.</p>
-        <p>The key is stored only on your device and costs fractions of a cent per import — most users spend less than $1/month.</p>
-        <a href="https://console.anthropic.com" target="_blank">Get your API key →</a>
+    <div class="section-label">Optional Enhancement</div>
+    <h2>Go further with<br><em>a free API key.</em></h2>
+    <div class="api-intro">
+      <p>Crave works great out of the box — no setup required. Add an optional API key to unlock even more: AI-powered recipe import, or beautiful auto-added photos for your recipes. Both keys are free, stored only on your device, and completely optional.</p>
+    </div>
+    <div class="api-providers">
+
+      <div class="api-provider">
+        <div class="api-provider-label">AI Import</div>
+        <h3>Claude API</h3>
+        <p>Import recipes from photos, PDFs, and web pages using AI. Costs fractions of a cent per import — most users spend less than $1/month. Free credits included when you sign up.</p>
+        <div class="api-steps">
+          <div class="api-step">
+            <div class="api-step-num">1</div>
+            <p>Go to <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> and create a free account.</p>
+          </div>
+          <div class="api-step">
+            <div class="api-step-num">2</div>
+            <p>Navigate to <strong>API Keys</strong> and generate a new key.</p>
+          </div>
+          <div class="api-step">
+            <div class="api-step-num">3</div>
+            <p>In Crave, go to <strong>Settings → Claude API Key</strong> and paste it in.</p>
+          </div>
+          <div class="api-step">
+            <div class="api-step-num">4</div>
+            <p>Done. Your key never leaves your device.</p>
+          </div>
+        </div>
       </div>
-      <div class="api-steps">
-        <div class="api-step">
-          <div class="api-step-num">1</div>
-          <p>Go to <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> and create a free account.</p>
-        </div>
-        <div class="api-step">
-          <div class="api-step-num">2</div>
-          <p>Navigate to <strong>API Keys</strong> and generate a new key.</p>
-        </div>
-        <div class="api-step">
-          <div class="api-step-num">3</div>
-          <p>In Crave, go to <strong>Settings → API Key</strong> and paste it in.</p>
-        </div>
-        <div class="api-step">
-          <div class="api-step-num">4</div>
-          <p>Done. Your key never leaves your device.</p>
+
+      <div class="api-provider">
+        <div class="api-provider-label">Recipe Photos</div>
+        <h3>Unsplash API</h3>
+        <p>Automatically find and add a beautiful photo when you import a recipe. Unsplash is a free photo library — no cost per use, just a free developer account.</p>
+        <div class="api-steps">
+          <div class="api-step">
+            <div class="api-step-num">1</div>
+            <p>Go to <a href="https://unsplash.com/developers" target="_blank">unsplash.com/developers</a> and create a free account.</p>
+          </div>
+          <div class="api-step">
+            <div class="api-step-num">2</div>
+            <p>Create a new application to get your <strong>Access Key</strong>.</p>
+          </div>
+          <div class="api-step">
+            <div class="api-step-num">3</div>
+            <p>In Crave, go to <strong>Settings → Unsplash API Key</strong> and paste it in.</p>
+          </div>
+          <div class="api-step">
+            <div class="api-step-num">4</div>
+            <p>Done. Recipes get a matching photo added automatically on import.</p>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -712,23 +757,23 @@
           What's the catch?
           <span class="chevron"><i data-lucide="chevron-down"></i></span>
         </button>
-        <div class="faq-a"><p>No catch. Crave is genuinely 100% free with no ads, no tracking, and no account required. There's no premium version and no plans to add one. The only optional cost is the Claude API key for importing recipes, which runs fractions of a cent per use.</p></div>
+        <div class="faq-a"><p>No catch. Crave is genuinely 100% free with no ads, no tracking, and no account required. There's no premium version and no plans to add one. The only optional cost is the Claude API key for AI-powered recipe import, which runs fractions of a cent per use. The Unsplash API key for auto-adding recipe photos is completely free.</p></div>
       </div>
 
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Do I need a Claude API key?
+          Do I need an API key?
           <span class="chevron"><i data-lucide="chevron-down"></i></span>
         </button>
-        <div class="faq-a"><p>No. But if you want to intelligently parse recipes from photos, PDFs, and web pages, you'll need one. You can still add recipes manually without a key. You can get a key from <a href="https://console.anthropic.com" target="_blank">Anthropic's website</a> — it's stored only on your device.</p></div>
+        <div class="faq-a"><p>No. Both API keys are optional. A <strong>Claude API key</strong> lets you import recipes from photos, PDFs, and web pages using AI. An <strong>Unsplash API key</strong> automatically finds and adds a photo when you import a recipe. You can add recipes manually without either. Both keys are stored only on your device.</p></div>
       </div>
 
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          How much does the API key cost to use?
+          How much do the API keys cost?
           <span class="chevron"><i data-lucide="chevron-down"></i></span>
         </button>
-        <div class="faq-a"><p>Crave uses Claude Haiku, Anthropic's most affordable model. Each recipe import costs a fraction of a cent. Most users spend less than $1 per month.</p></div>
+        <div class="faq-a"><p>The <strong>Unsplash API</strong> is completely free. The <strong>Claude API</strong> uses Claude Haiku, Anthropic's most affordable model — each recipe import costs a fraction of a cent, and most users spend less than $1 per month. Anthropic includes free credits when you first sign up.</p></div>
       </div>
 
       <div class="faq-item">

@@ -113,7 +113,7 @@ This is the authoritative feature list for the Crave Recipes Android app. Use it
 | Font size | S / M / L |
 | Measurement mode | Metric / US Imperial / US Cups / Weight |
 | Tags & Sources manager | Rename, delete, reset to defaults |
-| API key management | Show/hide/save/clear |
+| API key management | Claude API key + Unsplash API key; show/hide/save/clear |
 | Backup & Restore | JSON export v4; includes recipes, photos, attributions, tags |
 
 ## Tasks
@@ -123,6 +123,7 @@ This is the authoritative feature list for the Crave Recipes Android app. Use it
 - [ ] **Record live URL** — add `https://recipes.crave.co.nz` to `C:\Projects\recipe-pwa` under Play Store Publishing
 - [x] **Dedicated privacy URL** — `privacy/index.html` created; nav/footer links updated to `/privacy`; live at `https://recipes.crave.co.nz/privacy` (2 Jun 2026)
 - [ ] **API key** — remove or rotate the Claude API key stored in app settings once current Anthropic credit runs out
+- [ ] **Google Play buttons** — once Play Store app is approved, verify and fix all "Free on Google Play" button hyperlinks point to the live listing
 
 ### Done
 
