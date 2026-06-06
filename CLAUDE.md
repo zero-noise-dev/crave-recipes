@@ -113,7 +113,7 @@ This is the authoritative feature list for the Crave Recipes Android app. Use it
 | Font size | S / M / L |
 | Measurement mode | Metric / US Imperial / US Cups / Weight |
 | Tags & Sources manager | Rename, delete, reset to defaults |
-| API key management | Claude API key + Unsplash API key; show/hide/save/clear |
+| API key management | Claude API key + Pexels API key; show/hide/save/clear |
 | Backup & Restore | JSON export v4; includes recipes, photos, attributions, tags |
 
 ## Tasks
@@ -132,7 +132,7 @@ This is the authoritative feature list for the Crave Recipes Android app. Use it
 - [x] Git initialised
 - [x] 'Built for Cooking' section added (1 Jun 2026)
 - [x] Deployed to GitHub Pages — https://recipes.crave.co.nz (1 Jun 2026)
-- [x] Nav links fixed (Features/FAQ now work from privacy page), API key section reframed as optional, contact email updated to recipe@crave.co.nz (1 Jun 2026)
+- [x] Nav links fixed (Features/FAQ now work from privacy page), API key section reframed as optional, contact email updated to recipes@crave.co.nz (1 Jun 2026)
 - [x] Screenshots replaced — duo-split dark/light hero + carousel with 5 slides (Home, Ingredients, Method/Cooking, Settings); method screen serves as Cooking Mode (2 Jun 2026)
 - [x] Screenshot section redesigned — single duo-split (background removed via Python flood-fill) floating over blurred flat-lay background; carousel removed (2 Jun 2026)
 - [x] Hero/FAQ polish — removed Android badge, standardised Play buttons, FAQ copy improvements, nutritional info FAQ entry added (2 Jun 2026)
@@ -160,4 +160,4 @@ Always commit as `zero-noise-dev` — this is the GitHub handle used for all com
 | Live URL | `https://recipes.crave.co.nz` |
 | GitHub repo | `zero-noise-dev/crave-recipes` |
 | Play Store URL | `https://play.google.com/store/apps/details?id=nz.co.crave.recipes` |
-| Contact email | `recipe@crave.co.nz` |
+| Contact email | `recipes@crave.co.nz` |
