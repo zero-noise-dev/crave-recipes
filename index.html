@@ -828,7 +828,7 @@
           Can I share recipes with others?
           <span class="chevron"><i data-lucide="chevron-down"></i></span>
         </button>
-        <div class="faq-a"><p>Yes. From any recipe you can export a formatted PDF, share as plain text, or share a screenshot — all from the recipe detail screen.</p></div>
+        <div class="faq-a"><p>Yes. From any recipe you can export a formatted PDF, share as plain text, or share a screenshot — all from the recipe detail screen. You can also share your entire collection as a JSON backup from Settings, which another Crave user can restore on their device.</p></div>
       </div>
 
       <div class="faq-item">
@@ -864,7 +864,7 @@
 <!-- PRIVACY -->
 <div id="privacy">
   <h1>Privacy Policy</h1>
-  <p class="last-updated">Last updated: 1 June 2026</p>
+  <p class="last-updated">Last updated: 5 July 2026</p>
   <p>Crave Recipes is designed from the ground up to respect your privacy. This policy explains what data the app handles and how.</p>
   <h2>Data We Collect</h2>
   <p><strong>Nothing.</strong> Crave Recipes does not collect, transmit, or store any personal data on any server. There are no analytics, no crash reporting, no usage tracking, and no advertising identifiers.</p>
@@ -881,13 +881,20 @@
   <p>This data never leaves your device except when you explicitly export a backup file.</p>
   <h2>Claude API Key</h2>
   <p>When you use an import feature, your device sends recipe content directly to Anthropic's API using your personal API key. This request is made from your device — not through any Crave Recipes server. Please review <a href="https://www.anthropic.com/privacy" target="_blank">Anthropic's Privacy Policy</a> for details on how they handle API requests.</p>
-  <p>Treat your API key like a password. If you share a backup file with others, be aware it will contain your API key — remove it from Settings first if you do not want to share it.</p>
+  <p>Treat your API key like a password. API keys are not included in backup exports.</p>
   <h2>No Account Required</h2>
   <p>Crave Recipes does not require an account, email address, or any form of registration.</p>
   <h2>Third-Party Services</h2>
-  <p>The only third-party service Crave Recipes communicates with is the Anthropic Claude API, and only when you actively use an import feature. No advertising networks, analytics services, or other third-party SDKs are used.</p>
+  <p>Crave Recipes communicates with the following third-party services, and only when you actively use the relevant optional feature:</p>
+  <ul>
+    <li><strong>Anthropic Claude API</strong> — used for AI-powered recipe import (photos, PDFs, web pages). Only called when you trigger an import.</li>
+    <li><strong>Pexels API</strong> — used to find and attach a photo when importing a recipe. Only called if you have a Pexels API key configured.</li>
+  </ul>
+  <p>No advertising networks, analytics services, or other third-party SDKs are used.</p>
   <h2>Data Deletion</h2>
   <p>All your data can be deleted at any time by clearing the app's data or uninstalling it. There is no server-side data to delete.</p>
+  <h2>Disclaimer</h2>
+  <p>Crave Recipes is provided "as is" without warranty of any kind. AI-powered import features may produce inaccurate results — always verify imported recipes before use. Crave Recipes is not responsible for the availability or terms of third-party services (Anthropic, Pexels). Use of those services is subject to their own terms and privacy policies.</p>
   <h2>Contact</h2>
   <p>Questions about this policy? Email <a href="mailto:recipes@crave.co.nz">recipes@crave.co.nz</a></p>
   <div style="margin-top:3rem;">
