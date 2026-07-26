@@ -21,6 +21,60 @@ Replaced the duo-split phones graphic with `hero-home-page-light.png`. Tightened
 
 ---
 
+## Session: 6 June 2026 — Polish, Pexels, Privacy URL & Store Assets
+
+A broad session covering several independent changes across the site plus creation of Google Play Store screenshot assets.
+
+### Changes Made
+
+**Dedicated privacy page**
+- Created `privacy/index.html` as a real static page at `https://recipes.crave.co.nz/privacy` (replaces JS toggle)
+- All nav and footer Privacy links in `index.html` updated to point to `/privacy`
+
+**Unsplash → Pexels**
+- Replaced all Unsplash references with Pexels (`pexels.com/api`) across `index.html` and `CLAUDE.md`
+- Updated Settings path to "Settings → Pexels API Key"
+
+**Contact email fix**
+- Corrected `recipe@crave.co.nz` → `recipes@crave.co.nz` in `index.html`, `privacy/index.html`, and `CLAUDE.md`
+
+**Google Play buttons — Coming Soon state**
+- All "Free on Google Play" buttons replaced with non-clickable "Coming to Google Play" (`btn-coming-soon` style) pending app approval
+- Footer Google Play link changed to plain text
+- Task added to CLAUDE.md to restore active links once app is approved
+
+**Pillars grid fix**
+- Changed `repeat(auto-fit, minmax(175px,1fr))` to `repeat(3,1fr)` — eliminates empty background slots on wide viewports
+
+**Text wrapping fixes**
+- `&nbsp;` chains added to prevent orphaned words: "Free&nbsp;forever", "handles&nbsp;it&nbsp;all", "phone&nbsp;a&nbsp;pleasure"
+- Second sentences in Zero Sign-Up, Local Storage, and Backup & Restore pillar cards forced to new line with `<br>`
+
+**Revert commands added to quick reference**
+- `claude/claude-quickref.md` updated with safe (`revert`) and destructive (`reset --hard`) revert instructions
+
+**Google Play Store screenshot assets**
+- Created `store-assets/screenshots.html` — 4 branded 1080×1920 slides (Home, Import, Recipe Detail, Edit)
+- Dark palette, Lora serif headlines, orange accent chips — consistent with site design
+- Screenshots generated via Chrome DevTools (Vivaldi has a known bug with this feature over RDP; use Chrome/Edge instead)
+- Files stored in `store-assets/` alongside the HTML template; 5MB PNGs are within Google Play's 8MB limit
+
+---
+
+## Session: 2 June 2026 — Unsplash API as Second Optional Enhancement
+
+Added Unsplash photo API alongside Claude API as a second optional enhancement. Redesigned the API section from a single description+steps card into two side-by-side provider cards. Updated FAQ to cover both keys. Updated CLAUDE.md feature reference.
+
+### Changes Made
+
+- **API section redesign:** Replaced `.api-box` (single card, description left / steps right) with `.api-providers` grid (two equal cards side by side, stacks on mobile)
+- **Claude API card:** Label "AI Import"; same steps, updated Settings path to "Settings → Claude API Key"
+- **Unsplash API card:** Label "Recipe Photos"; 4-step setup pointing to `unsplash.com/developers`; described as completely free
+- **FAQ:** "Do I need a Claude API key?" → "Do I need an API key?" covering both; "How much does the API key cost?" → "How much do the API keys cost?" with Unsplash noted as free
+- **CLAUDE.md:** Settings feature reference updated to note both API keys
+
+---
+
 ## Session: 2 June 2026 — Dedicated Privacy Page
 
 Added `privacy/index.html` as a real static page served at `https://recipes.crave.co.nz/privacy` so Google Play can verify the app's privacy policy URL. Previously the privacy policy was only accessible via a JS toggle (no real URL). Updated all nav and footer Privacy links in `index.html` to point to `/privacy` directly.

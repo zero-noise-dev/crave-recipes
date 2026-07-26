@@ -421,29 +421,6 @@
     .faq-a a { color: var(--accent); text-decoration: none; font-weight: 500; }
     .faq-a a:hover { text-decoration: underline; }
 
-    /* ── BOTTOM CTA ── */
-    .bottom-cta {
-      text-align: center;
-      padding: 5rem 2rem 8rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .bottom-cta::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(240,149,74,0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .bottom-cta p {
-      font-family: var(--serif);
-      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
-      line-height: 1.25;
-      margin-bottom: 2.5rem;
-      color: var(--text);
-      position: relative; z-index: 1;
-    }
-    .bottom-cta p em { font-style: italic; font-weight: 400; color: var(--accent); }
-
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -484,7 +461,6 @@
       .pillars { grid-template-columns: 1fr 1fr; }
       .section { padding: 4rem 1.5rem; }
       footer { padding: 1.5rem; }
-      .bottom-cta { padding: 4rem 1.5rem 6rem; }
     }
 
     /* ── MOBILE MENU ── */
@@ -588,7 +564,6 @@
 
   <!-- FEATURES -->
   <section class="section fade-in" id="features">
-    <div class="section-label">Why Crave</div>
     <h2>Built around <em>privacy</em><br>and simplicity.</h2>
     <p class="lead">No accounts. No cloud. No nonsense. Everything stays on your device, forever.</p>
     <div class="pillars">
@@ -629,7 +604,6 @@
 
   <!-- IMPORT -->
   <section class="section fade-in">
-    <div class="section-label">Import</div>
     <h2>Get recipes in<br><em>any format.</em></h2>
     <p class="lead">From the web, your files, or a photo of a cookbook.</p>
     <div class="import-grid">
@@ -660,7 +634,6 @@
 
   <!-- COOKING FEATURES -->
   <section class="section fade-in" id="cooking">
-    <div class="section-label">Built for Cooking</div>
     <h2>Everything you need<br><em>at the stove.</em></h2>
     <p class="lead">Thoughtful features that make actually cooking from your phone&nbsp;a&nbsp;pleasure.</p>
     <div class="cooking-grid">
@@ -701,7 +674,6 @@
 
   <!-- API KEY -->
   <section class="section fade-in">
-    <div class="section-label">Optional Enhancement</div>
     <h2>Go further with<br><em>an API key.</em></h2>
     <div class="api-intro">
       <p>Crave works great out of the box — no setup required. Add an optional API key to unlock even more: AI-powered recipe import, or beautiful auto-added photos for your recipes. Both keys are stored only on your device and completely optional.</p>
@@ -755,8 +727,7 @@
 
   <!-- FAQ -->
   <section class="section fade-in" id="faq">
-    <div class="section-label">FAQ</div>
-    <h2>Common<br><em>questions.</em></h2>
+    <h2>FAQ</h2>
     <div class="faq-list">
 
       <div class="faq-item">
@@ -827,14 +798,6 @@
     </div>
   </section>
 
-  <!-- BOTTOM CTA -->
-  <div class="bottom-cta fade-in">
-    <p>Ready to own your<br><em>recipe collection?</em></p>
-    <a href="https://play.google.com/store/apps/details?id=nz.co.crave.recipes" class="btn-primary" target="_blank">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 1-1.09-1.79V2.03A2 2 0 0 1 3.18.27l11.61 11.73L3.18 23.76zm14.36-8.59L4.93 21.96l9.26-9.35 3.35 2.56zM21 13.68a2 2 0 0 1 0 3.46l-2.14 1.23-3.68-2.81 3.68-3.72L21 13.68zM4.93 2.04l12.61 6.79-3.35 3.39-9.26-10.18z"/></svg>
-      Free on Google Play
-    </a>
-  </div>
 
 </div><!-- /#main -->
 
